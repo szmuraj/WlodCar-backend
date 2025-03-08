@@ -1,19 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Rejestracja DbContext w kontenerze DI
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-// Dodanie usług MVC
+// Dodaj usługi do kontenera
 builder.Services.AddControllers();
 
 var app = builder.Build();
 
-// Włączenie routingu i mapowanie kontrolerów
-app.UseRouting();
+// Konfiguracja ścieżki obsługi HTTP
+app.UseHttpsRedirection();
+app.UseAuthorization();
 app.MapControllers();
 
-// Uruchomienie aplikacji
 app.Run();

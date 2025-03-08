@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WlodCarBackend.Models;
 
+namespace WlodCarBackend.Data;
 public class ApplicationDbContext : DbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
